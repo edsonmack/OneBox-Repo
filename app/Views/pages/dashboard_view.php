@@ -1,3 +1,7 @@
+<!-- headerpart -->
+<!-- sidebar -->
+<!-- topbar -->
+<!-- secondtopbar -->
 <div class="row">
     <div class="col-lg-12">
         <div class="jumbotron">
@@ -8,3 +12,4 @@
         </div>
     </div>
 </div>
+<!-- footerpart -->

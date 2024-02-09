@@ -166,7 +166,7 @@
                 
 
 
-                <!--  START: dynamic_view -->
+                <!--  START: contentview -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="jumbotron">
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                <!--  END: dynamic_view -->
+                <!--  END: contentview -->
                    
                 <!-- START: footer part -->
                     <div class="footer">
