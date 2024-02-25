@@ -45,15 +45,18 @@
             </div>
             <div class="col-md-6">
                 <div class="ibox-content">
-                    <form class="m-t" role="form" action="http://webapplayers.com/inspinia_admin-v2.9.3/index.html">
+                    <form class="m-t" role="form" id="myForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Name" required="">
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" required="">
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required="">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
@@ -85,6 +88,39 @@
 
 </body>
 
-
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.9.3/login_two_columns.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Oct 2020 09:51:38 GMT -->
 </html>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function(){
+        // Function for validations....
+
+        // Function onclick submit button...
+        $('#myForm').submit(function(event) {
+            event.preventDefault();
+            // Retrieve the data from the form
+            var firstname = $('#first_name').val();
+            var lastname = $('#last_name').val();
+            var email = $('#email').val();
+            var password = $('#user_password').val();
+
+            // Send the data to the controller using Ajax
+            $.ajax({
+                url  : "<?php echo base_url().'User/create_user';?>",
+                method: 'POST',
+                data: {
+                    firstname: firstname,
+                    lastname: lastname,
+                    email:email,
+                    passwd:password
+                },
+                success: function(response) {
+                    // alert(response);
+                    // $('.result').html(response)
+                }
+            });
+        });
+     });
+</script>

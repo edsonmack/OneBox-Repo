@@ -8,3 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/create_account', 'CreateAccount::create_account');
 $routes->get('/dashboard', 'Dashboard::dashboard');
+$routes->get('/myquery', 'MyQuery::index');
+
+

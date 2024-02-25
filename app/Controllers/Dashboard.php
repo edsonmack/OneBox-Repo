@@ -6,6 +6,10 @@ class Dashboard extends BaseController
 {
     public function dashboard(): string
     {
-        return view('index');
+        return view('components/header')
+            .view('components/side_bar')
+            .view('components/topbar')
+            .view('components/second_topbar')
+            .view('components/footer');
     }
 }
