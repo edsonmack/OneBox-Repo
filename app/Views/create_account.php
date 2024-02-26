@@ -108,8 +108,9 @@
 
             // Send the data to the controller using Ajax
             $.ajax({
-                url  : "<?php echo base_url().'User/create_user';?>",
-                method: 'POST',
+                url:'/signup',
+                type : "POST",
+                dataType : "json",
                 data: {
                     firstname: firstname,
                     lastname: lastname,
