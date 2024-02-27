@@ -96,6 +96,11 @@
 <script>
     $(document).ready(function(){
         // Function for validations....
+        /*
+        - Normal input validation (check field not blank...)
+        - email validation(valid email ... @)
+        - password validation(more than eight characters, pass = confirm pass, A-Z|a-z|0-9|@#*)
+        */
 
         // Function onclick submit button...
         $('#myForm').submit(function(event) {
