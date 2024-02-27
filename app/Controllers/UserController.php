@@ -26,6 +26,7 @@ class UserController extends BaseController
                 'first_name' => $firstname,
                 'last_name'  => $lastname,
                 'email'  => $email,
+                'user_password' => $passwd,
                 'role_id' => 1,
                 'created_date' => date('Y-m-d'),
                 'status' => 1
@@ -33,11 +34,10 @@ class UserController extends BaseController
 
             // Instiantiate Model 
             $userModel = new UserModel();
-            if($userModel->insert_data($data)){
-                exit(var_dump('Successfully data insert.....'));
-            }else{
-                exit(var_dump('Failure to insert!'));
-            }
+            $test = $userModel->insert_data($data);
+
+            exit(var_dump($test));
+           
         }
     
 

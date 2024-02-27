@@ -115,7 +115,6 @@
             $.ajax({
                 url:'/signup',
                 type : "POST",
-                dataType : "json",
                 data: {
                     firstname: firstname,
                     lastname: lastname,

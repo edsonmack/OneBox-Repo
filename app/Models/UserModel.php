@@ -5,8 +5,6 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table = 'tbl_users';
-    // .. other member variables
-    private $db;
 
     public function __construct()
     {
@@ -18,15 +16,15 @@ class UserModel extends Model
     // Insert 
     public function insert_data($data = array())
     {
-        return $this->db->table($this->table)->insert($data, false);
-        // return $this->db->insertID();
+        $this->db->table($this->table)->insert($data);
+        return $this->db->insertID();
     }
 
     // Update
     public function update_data($id, $data = array())
     {
         $this->db->table($this->table)->update($data, array(
-            "id" => $id,
+            "user_id" => $id,
         ));
         return $this->db->affectedRows();
     }
@@ -35,7 +33,7 @@ class UserModel extends Model
     public function delete_data($id)
     {
         return $this->db->table($this->table)->delete(array(
-            "id" => $id,
+            "user_id" => $id,
         ));
     }
 

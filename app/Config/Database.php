@@ -26,10 +26,10 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
+        'hostname'     => '10.200.222.76',
         'username'     => 'postgres',
-        'password'     => 'root',
-        'database'     => 'one',
+        'password'     => 'postgres',
+        'database'     => 'onebox',
         'DBDriver'     => 'postgre',
         'DBPrefix'     => '',
         'pConnect'     => false,
