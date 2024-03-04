@@ -36,8 +36,19 @@ class UserController extends BaseController
             $userModel = new UserModel();
             $test = $userModel->insert_data($data);
 
-            exit(var_dump($test));
-           
+            $result = array(
+                'succ_msg' => 'User has been created successfully!',
+                'err_msg' => 'Sorry, It seems an error has occur!',
+                'succ_code' => 200,
+                'err_code' => 404,
+            );
+
+            if($test > 0){
+                return view('create_account', $result);
+            }else{
+                return view('create_account', $result);
+            }
+ 
         }
     
 

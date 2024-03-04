@@ -47,16 +47,18 @@
                 <div class="ibox-content">
                     <form class="m-t" role="form" id="myForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name">
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name">
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            <small style="color:red;" id="email_validation"> Please insert the correct email!</small>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password">
+                            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password" required>
+                            <small id="password_validation"> </small>
                         </div>
                         <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
@@ -93,12 +95,59 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function(){
+        // START:  Email validation....
+        // Onload... 
+        $('#email_validation').hide();
+        // Function.. ontype 
+        $('#email').on('input', function() {
+            var email_val = $('#email').val();
+            const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test(email_val)) {
+                $('#email_validation').show();
+            }else{
+                $('#email_validation').hide();
+            } 
+        });
+        // END:  Email validation....
+
+        // START:  Password validation....
+        // Onload...
+        $('#password_validation').hide();
+        // Function.. ontype 
+        // $('#user_password').on('input', function() {
+        $('#user_password').keyup(function() { 
+            var check_number = /([0-9])/;
+            var check_alphabets = /([a-zA-Z])/;
+            var check_special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+            var user_password = $('#user_password').val().trim();
+            // Validate Password Length...
+            // if($(this).val().length > 8){
+            //     $('#password_validation').hide();
+            // }
+            // else{
+            //     $('#password_validation').show();
+            //     $('#password_validation').html("Password should have atleast 8 characters!")
+            //                              .css({'color':'red'});
+            // }
+            // Validate Other...
+            if (user_password.match(check_number) && user_password.match(check_alphabets) && user_password.match(check_special_characters)) {
+                $('#password_validation').hide();
+            }else{
+                $('#password_validation').show();
+                $('#password_validation').html("Password should have atleast one number, one aphabetical & one special character!")
+                                         .css({'color':'red'});
+            }
+        });
+        // END:  Password validation....
+
+
         // Function for validations....
         /*
-        - Normal input validation (check field not blank...)
-        - email validation(valid email ... @)
+        - Normal input validation (check field not blank...) -- DONE
+        - email validation(valid email ... @)  -- DONE
         - password validation(more than eight characters, pass = confirm pass, A-Z|a-z|0-9|@#*)
         */
 
@@ -122,10 +171,29 @@
                     passwd:password
                 },
                 success: function(response) {
-                    // alert(response);
-                    // $('.result').html(response)
-                }
+                    alert(response);
+                    debugger;
+
+                    if(response.result['succ_code'] === 200) {
+                        swal({
+                            title: "Great!",
+                            text: "Message!",
+                            type: "success"
+                            }).then(function() {
+                                $('#myForm')[0].reset();
+                        });
+                    }else{
+                        swal({
+                            title: "Error!",
+                            text: "Message!",
+                            type: "error"
+                            }).then(function() {
+                                $('#myForm')[0].reset();
+                        }); 
+                    }
+                }    
             });
         });
-     });
+    });
+
 </script>
